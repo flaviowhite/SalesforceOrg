@@ -1,0 +1,27 @@
+<template>
+    <div class="c-container">
+        <lightning-card title="Atualizar dados da Conta" icon-name="standard:home">
+            <lightning-layout multiple-rows="true" class="slds-m-around_medium">
+
+                <lightning-layout-item class="slds-m-bottom_small" padding="around-small" size="3">
+                    <lightning-input label="Nome" type="text" data-id="name"></lightning-input>
+                </lightning-layout-item>
+
+                <lightning-layout-item padding="around-small" size="3">
+                    <lightning-input label="Account Number"  data-id="accountNumber"></lightning-input>
+                </lightning-layout-item>
+
+                <lightning-layout-item padding="around-small" size="3">
+                    <lightning-combobox label="Account Type" placeholder="Select an account type" options={picklistOptions} data-id="accountType"></lightning-combobox>
+                </lightning-layout-item>
+                
+                <lightning-layout-item padding="around-small" size="10">
+                    <lightning-layout-item size="3">
+                        <lightning-button label="Salvar" onclick={dataSave}></lightning-button>
+                    </lightning-layout-item>
+                </lightning-layout-item>
+
+            </lightning-layout>
+        </lightning-card>
+    </div>
+</template>
