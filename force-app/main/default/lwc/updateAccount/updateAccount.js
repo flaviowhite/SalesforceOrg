@@ -31,7 +31,6 @@ export default class updateAccount extends LightningElement {
   }
 
   dataSave() {
-    console.log("passei aqui ");
     const accountData = {
         accountId : this.recordId,
         name : this.template.querySelector('[data-id="name"]').value,
@@ -39,8 +38,6 @@ export default class updateAccount extends LightningElement {
         accountType : this.template.querySelector('[data-id="accountType"]').value
     };
     const jsonString = JSON.stringify(accountData);
-    accountUpdate({jsonString}).then();
-    console.log('Teste ' + jsonString);
-
+    accountUpdate({jsonString});
   }
 }
