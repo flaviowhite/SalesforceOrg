@@ -1,5 +1,4 @@
 public with sharing class Utils {
-    public Utils() {}
     
     public static Boolean validaCPF(String CPF){
         if (CPF.length() == 11){
