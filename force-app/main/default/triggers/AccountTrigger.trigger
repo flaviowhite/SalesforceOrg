@@ -1,4 +1,5 @@
-trigger AccountTrigger on Account (before insert, before update , after insert, after update) {
+trigger AccountTrigger on Account (before insert, after insert, before update, after update) {
+
     List <Opportunity> oppList = new List <Opportunity>();
     List <Task> taskList = new List <Task>();
     Map<Id, RecordType> RecordTypeMap = new Map<Id, RecordType>([SELECT Name ,id FROM RecordType WHERE SobjectType = 'Account']);
@@ -7,12 +8,16 @@ trigger AccountTrigger on Account (before insert, before update , after insert, 
         if (((!Utils.validaCNPJ(acc.AccountNumber)) && acc.Type == 'CNPJ') || ((!Utils.validaCPF(acc.AccountNumber)) && acc.Type == 'CPF')){
             acc.AccountNumber.addError('Numero do cliente é invalido');
         }
-        if(RecordTypeMap.get(acc.RecordtypeId).Name == 'Parceiro'){
-            oppList.add(createOpp(acc));
+
+        if (acc.RecordType != null){
+            if(RecordTypeMap.get(acc.RecordtypeId).Name == 'Parceiro'){
+                oppList.add(createOpp(acc));
+            }
+            else if (RecordTypeMap.get(acc.RecordtypeId).Name == 'Consumidor final'){
+                taskList.add(createTask(acc));
+            }
         }
-        else if (RecordTypeMap.get(acc.RecordtypeId).Name == 'Consumidor final'){
-            taskList.add(createTask(acc));
-        }
+       
     }
     if (oppList.size() > 0){
         Database.insert(oppList);

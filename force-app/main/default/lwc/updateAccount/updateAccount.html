@@ -15,12 +15,22 @@
                     <lightning-combobox label="Account Type" placeholder="Select an account type" options={picklistOptions} data-id="accountType"></lightning-combobox>
                 </lightning-layout-item>
                 
+               
                 <lightning-layout-item padding="around-small" size="10">
                     <lightning-layout-item size="3">
                         <lightning-button label="Salvar" onclick={dataSave}></lightning-button>
+                        <lightning-button variant="neutral" label="Fechar" onclick={closeModal} class="slds-m-left_small"></lightning-button>
                     </lightning-layout-item>
                 </lightning-layout-item>
 
+                <lightning-layout-item padding="around-small" size="12">
+                    <div class={successMessageClass} if:true={showSuccessMessage}>
+                        {successMessage}
+                    </div>
+                    <div class={errorMessageClass} if:true={showErrorMessage}>
+                    </div>
+                </lightning-layout-item>
+            
             </lightning-layout>
         </lightning-card>
     </div>
