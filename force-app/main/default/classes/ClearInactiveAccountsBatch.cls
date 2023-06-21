@@ -1,7 +1,7 @@
 public class ClearInactiveAccountsBatch implements Database.Batchable<SObject> {
     
     public Database.QueryLocator start(Database.BatchableContext context) {
-        String query = 'SELECT id, (SELECT id FRON Tasks WHERE CreatedDate >= LAST_90_DAYS ) task, (SELECT id FROM Opportunities WHERE ((StageName =\'Closed Won\' and CloseDate >= LAST_N_DAYS:120) or (StageName = \'Negotiation/Review\'))) opp FROM Account WITH SECURITY_ENFORCED';
+        String query = 'SELECT id, (SELECT id FROM Tasks WHERE CreatedDate >= LAST_90_DAYS ) task, (SELECT id FROM Opportunities WHERE ((StageName =\'Closed Won\' and CloseDate >= LAST_N_DAYS:120) or (StageName = \'Negotiation/Review\'))) opp FROM Account WITH SECURITY_ENFORCED';
         return Database.getQueryLocator(query);
     }
     
