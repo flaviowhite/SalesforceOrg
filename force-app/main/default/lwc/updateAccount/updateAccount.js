@@ -45,14 +45,14 @@ export default class updateAccount extends LightningElement {
     accountUpdate({jsonString})
         .then(result => {
             this.showSuccessMessage = true;
-            console.log('result ' + result);
             this.successMessage = result;
             setTimeout(() => {
                 this.closeModal();
             }, 3000);
-        })
+        }) 
         .catch(error => {
-            console.error(error);
+            this.showErrorMessage = true;
+            this.errorMessage = 'Não foi possivel alterar os dados da conta';
             setTimeout(() => {
                 this.closeModal();
             }, 3000);
